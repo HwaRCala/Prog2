@@ -22,7 +22,7 @@ function validarEntero(valor){
 function validateEmail(){
                 
                 // recupero el valor del email.
-                var emailField = document.getElementById('user-email');
+                var emailField = document.getElementById('useremail');
                 
                 // Defino la expresion regular .
                 var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
@@ -64,12 +64,12 @@ function validarform(){
     }
 
     //valido email.
-    mail = document.fvalida.user-email.value
+    mail = document.fvalida.useremail.value
     mail = validateEmail(mail)
-    document.fvalida.user-email.value
+    document.fvalida.useremail.value
     if (mail==""){
        alert("Tiene que introducir un Email.")
-       document.fvalida.user-email.focus()
+       document.fvalida.useremail.focus()
        return 0;
 
     //valido el localidad
@@ -99,7 +99,7 @@ function validarform(){
 		</tr>
         <tr>
 		    <td>Email: </td>
-		    <td><input type="email" id="user-email" name="user-email" size="40" maxlength="100"></td>
+		    <td><input type="email" id="useremail" name="useremail" size="40" maxlength="100"></td>
         </tr>
         <tr>
 		    <td>Dirección: </td>
