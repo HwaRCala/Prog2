@@ -19,7 +19,23 @@ function validarEntero(valor){
             return valor
       }
 }
+function validateEmail(){
+                
+                // recupero el valor del email.
+                var emailField = document.getElementById('user-email');
+                
+                // Defino la expresion regular .
+                var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
+                // evaluo contra la exp.reg.
+                if( validEmail.test(emailField.value) ){
+                    alert('Email es valido!!');
+                    return true;
+                }else{
+                    alert('Email es invalido, vuelva a intentar');
+                    return false;
+                }
+            }
 
 
 function validarform(){
@@ -47,23 +63,14 @@ function validarform(){
        }
     }
 
-    function validateEmail(){
-                
-                // recupero el valor del email.
-                var emailField = document.getElementById('user-email');
-                
-                // Defino la expresion regular .
-                var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-
-                // evaluo contra la exp.reg.
-                if( validEmail.test(emailField.value) ){
-                    alert('Email es valido!!');
-                    return true;
-                }else{
-                    alert('Email es invalido, vuelva a intentar');
-                    return false;
-                }
-            }
+    //valido email.
+    mail = document.fvalida.user-email.value
+    mail = validateEmail(mail)
+    document.fvalida.user-email.value
+    if (mail==""){
+       alert("Tiene que introducir un Email.")
+       document.fvalida.user-email.focus()
+       return 0;
 
     //valido el localidad
     if (document.fvalida.localidad.selectedIndex==0){
@@ -75,6 +82,7 @@ function validarform(){
     //el formulario se envia
     alert("Muchas gracias por enviar el formulario");
     document.fvalida.submit();
+}
 }
 </script>
 <body>
@@ -91,7 +99,7 @@ function validarform(){
 		</tr>
         <tr>
 		    <td>Email: </td>
-		    <td><input type="email" id="user-email" name="userEmail" size="40" maxlength="100"></td>
+		    <td><input type="email" id="user-email" name="user-email" size="40" maxlength="100"></td>
         </tr>
         <tr>
 		    <td>Dirección: </td>
