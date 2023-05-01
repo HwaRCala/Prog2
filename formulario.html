@@ -73,6 +73,13 @@ function validarform(){
     return 0;
     }
 
+ //valido el dirección
+ if (document.fvalida.direccion.value==0){
+       alert("Debe ingresar una dirección")
+       document.fvalida.direccion.focus()
+       return 0;
+    }
+
     //valido el localidad
     if (document.fvalida.localidad.selectedIndex==0){
        alert("Debe seleccionar una localidad")
