@@ -65,12 +65,13 @@ function validarform(){
 
     //valido email.
     mail = document.fvalida.useremail.value
-    mail = validateEmail(mail)
-    document.fvalida.useremail.value
+    mail = validateEmail(mail);
+    document.fvalida.useremail.value;
     if (mail==""){
-       alert("Tiene que introducir un Email.")
-       document.fvalida.useremail.focus()
-       return 0;
+    alert("Tiene que introducir un Email.")
+    document.fvalida.useremail.focus()
+    return 0;
+    }
 
     //valido el localidad
     if (document.fvalida.localidad.selectedIndex==0){
@@ -83,7 +84,7 @@ function validarform(){
     alert("Muchas gracias por enviar el formulario");
     document.fvalida.submit();
 }
-}
+
 </script>
 <body>
 
