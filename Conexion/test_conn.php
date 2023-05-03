@@ -1,5 +1,5 @@
 <?php
-require `db_conn.php`;
+require "db_conn.php";
 ?>
 
 <html lang="en">
@@ -23,10 +23,10 @@ require `db_conn.php`;
 
                     if (mysqli_affected_rows($con) != 0) {
                         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                            echo $row[`nombre`] . `<br>`;
+                            echo $row["nombre"] . "<br>";
                         }
                     }else{
-                        echo `sin datos`;
+                        echo "sin datos";
                     }
                     ?>
             </div>

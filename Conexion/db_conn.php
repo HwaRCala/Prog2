@@ -8,10 +8,10 @@ $db_name  = "ITLM";        // nombre de la base de datos a la cual vamos a conec
 // conectar al servidor y seleccionar bd.
 $con      = mysqli_connect($host, $username, $password, $db_name);
 
-if (mysqli_connect_errno($con)) {
+if (mysqli_connect_errno()) {
     echo "Error al conectar a MySQl: " . mysqli_connect_errno();
-    }else{
-        echo "conectado"
+//    }else{
+//        echo "conectado";
     }
 
     ?>
