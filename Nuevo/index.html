@@ -33,6 +33,7 @@
 </head>
 <body>
     <div class="container">
+        <div class="alta">
         <h1>ABM PMR Monitoreo CCS</h1>
         <h2>Alta de PMR</h2>
         <form action="alta_pmr.php" method="POST">
@@ -67,7 +68,28 @@
         </form>
 
         <!-- Otros formularios y opciones para el ABM y las vistas -->
-
+        </div>
+        <div class="modificar">
+        <h2>Modificar PMR</h2>
+    <form method="POST" action="">
+        <label for="pmr">PMR:</label>
+        <input type="text" name="pmr" value="<?php echo $pmr; ?>" required><br><br>
+        
+        <label for="direccion">Dirección:</label>
+        <input type="text" name="direccion" value="<?php echo $direccion; ?>" required><br><br>
+        
+        <label for="sim">SIM:</label>
+        <input type="text" name="sim" value="<?php echo $sim; ?>" required><br><br>
+        
+        <label for="dispositivo">Dispositivo:</label>
+        <input type="text" name="dispositivo" value="<?php echo $dispositivo; ?>" required><br><br>
+        
+        <label for="estado">Estado:</label>
+        <input type="text" name="estado" value="<?php echo $estado; ?>" required><br><br>
+        
+        <button type="submit" class="btn">Modificar PMR</button>
+    </form>
+        </div>
     </div>
 </body>
 </html>
