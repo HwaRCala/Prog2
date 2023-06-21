@@ -33,7 +33,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>ABM y Vistas - Monitoreo PMR</h1>
+        <h1>ABM PMR Monitoreo CCS</h1>
         <h2>Alta de PMR</h2>
         <form action="alta_pmr.php" method="POST">
             <div class="form-group">
@@ -46,13 +46,15 @@
             </div>
             <div class="form-group">
                 <label for="sim">SIM:</label>
-                <input type="text" name="sim" id="sim" required>
+                <select name="sim" id="sim" required>
                     <!-- Aquí se cargarían las opciones de las SIM desde la base de datos -->
+                </select>
             </div>
             <div class="form-group">
                 <label for="dispositivo">Dispositivo:</label>
-                <input type="text"   name="dispositivo" id="dispositivo" required>
+                <select name="dispositivo" id="dispositivo" required>
                     <!-- Aquí se cargarían las opciones de los dispositivos desde la base de datos -->
+                </select>
             </div>
             <div class="form-group">
                 <label for="estado">Estado:</label>
