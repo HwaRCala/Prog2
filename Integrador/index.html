@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ABM de PMR</title>
+</head>
+<body>
+    <h1>ABM de PMR</h1>
+
+    <?php
+    require "conn.php";
+    // Función para obtener el mensaje de verificación de PMR
+    function verificarPMR($pmr) {
+        global $conn;
+        $query = "SELECT verificar_pmr('$pmr') AS msg";
+        $result = $conn->query($query);
+        $row = $result->fetch_assoc();
+        return $row['msg'];
+    }
+
+    // Obtener la lista de PMR activos desde la vista
+    $query = "SELECT * FROM pmr_activos";
+    $result = $conn->query($query);
+    ?>
+
+    <h2>PMR Activos</h2>
+    <table>
+        <tr>
+            <th>PMR</th>
+            <th>Dirección</th>
+            <th>Número de Serie</th>
+            <th>Operadora</th>
+        </tr>
+        <?php while ($row = $result->fetch_assoc()) { ?>
+        <tr>
+            <td><?php echo $row['pmr']; ?></td>
+            <td><?php echo $row['direccion']; ?></td>
+            <td><?php echo $row['numero_serie']; ?></td>
+            <td><?php echo $row['operadora']; ?></td>
+        </tr>
+        <?php } ?>
+    </table>
+
+    <h2>Alta de PMR</h2>
+    <form action="agregar_pmr.php" method="POST">
+        <label for="pmr">PMR:</label>
+        <input type="text" name="pmr" required><br>
+        <label for="direccion">Dirección:</label>
+        <input type="text" name="direccion" required><br>
+        <label for="numero_serie">Número de Serie:</label>
+        <input type="text" name="numero_serie" required><br>
+        <label for="ident_sim">ID SIM:</label>
+        <input type="number" name="ident_sim" required><br>
+        <label for="ident_dispositivo">ID Dispositivo:</label>
+        <input type="number" name="ident_dispositivo" required><br>
+        <label for="estado">Estado:</label>
+        <select name="estado">
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+        </select><br>
+        <input type="submit" value="Agregar PMR">
+    </form>
+
+    <h2>Modificar PMR</h2>
+    <form action="modificar_pmr.php" method="POST">
+        <label for="pmr">PMR a modificar:</label>
+        <input type="text" name="pmr" required><br>
+        <input type="submit" value="Buscar PMR">
+    </form>
+
+    <?php
+    // Verificar si se ha enviado el formulario de modificación
+    if (isset($_POST['pmr'])) {
+        $pmr = $_POST['pmr'];
+
+        // Obtener los datos del PMR seleccionado
+        $query = "SELECT * FROM pmr_activos WHERE pmr = '$pmr'";
+        $result = $conn->query($query);
+
+        // Mostrar el formulario de modificación si se encontró el PMR
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+    ?>
+            <h2>Formulario de Modificación</h2>
+            <form action="actualizar_pmr.php" method="POST">
+                <input type="hidden" name="pmr_actual" value="<?php echo $pmr; ?>">
+                <label for="direccion">Dirección:</label>
+                <input type="text" name="direccion" value="<?php echo $row['direccion']; ?>" required><br>
+                <label for="numero_serie">Número de Serie:</label>
+                <input type="text" name="numero_serie" value="<?php echo $row['numero_serie']; ?>" required><br>
+                <label for="ident_sim">ID SIM:</label>
+                <input type="number" name="ident_sim" value="<?php echo $row['ident_sim']; ?>" required><br>
+                <label for="ident_dispositivo">ID Dispositivo:</label>
+                <input type="number" name="ident_dispositivo" value="<?php echo $row['ident_dispositivo']; ?>" required><br>
+                <label for="estado">Estado:</label>
+                <select name="estado">
+                    <option value="activo" <?php if ($row['estado'] == 'activo') echo 'selected'; ?>>Activo</option>
+                    <option value="inactivo" <?php if ($row['estado'] == 'inactivo') echo 'selected'; ?>>Inactivo</option>
+                </select><br>
+                <input type="submit" value="Actualizar PMR">
+            </form>
+    <?php
+        } else {
+            echo "<p>No se encontró el PMR.</p>";
+        }
+    }
+    ?>
+
+    <h2>Baja de PMR</h2>
+    <form action="eliminar_pmr.php" method="POST">
+        <label for="pmr">PMR a eliminar:</label>
+        <input type="text" name="pmr" required><br>
+        <input type="submit" value="Eliminar PMR">
+    </form>
+
+    <?php
+    // Cerrar la conexión a la base de datos
+    $conn->close();
+    ?>
+</body>
+</html>

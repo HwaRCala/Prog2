@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ABM y Vistas - Monitoreo PMR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ABM y Vistas - Monitoreo PMR</h1>
+        <h2>Alta de PMR</h2>
+        <form action="alta_pmr.php" method="POST">
+            <div class="form-group">
+                <label for="pmr">PMR:</label>
+                <input type="text" name="pmr" id="pmr" required>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" name="direccion" id="direccion" required>
+            </div>
+            <div class="form-group">
+                <label for="sim">SIM:</label>
+                <input type="text" name="sim" id="sim" required>
+                    <!-- Aquí se cargarían las opciones de las SIM desde la base de datos -->
+            </div>
+            <div class="form-group">
+                <label for="dispositivo">Dispositivo:</label>
+                <input type="text"   name="dispositivo" id="dispositivo" required>
+                    <!-- Aquí se cargarían las opciones de los dispositivos desde la base de datos -->
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <select name="estado" id="estado" required>
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Agregar PMR</button>
+        </form>
+
+        <!-- Otros formularios y opciones para el ABM y las vistas -->
+
+    </div>
+</body>
+</html>
