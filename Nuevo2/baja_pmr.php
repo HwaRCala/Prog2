@@ -12,7 +12,7 @@ if (!$conexion) {
     $id_pmr = $_POST['id_pmr'];
 
     // Eliminar el PMR de la base de datos
-    $sql_delete = "DELETE FROM pmr WHERE id_pmr = '$id_pmr'";
+    $sql_delete = "DELETE FROM pmr WHERE pmr = '$id_pmr'";
     
     if ($conexion->query($sql_delete) === TRUE) {
         echo "PMR eliminado correctamente";

@@ -18,10 +18,10 @@ if (!$conexion) {
         // Actualizar los datos del PMR en la base de datos
         $sql_update = "UPDATE pmr SET pmr = '$pmr_nuevo', direccion = '$direccion_nueva', ident_sim = '$sim_nuevo', ident_dispositivo = '$dispositivo_nuevo', estado = '$estado_nuevo' WHERE id_pmr = '$id_pmr'";
     
-        if ($conn->query($sql_update) === TRUE) {
+        if ($conexion->query($sql_update) === TRUE) {
             echo "PMR modificado correctamente";
         } else {
-            echo "Error al modificar PMR: " . $conn->error;
+            echo "Error al modificar PMR: " . $conexion->error;
         }
     }
 // Cerrar la conexión a la base de datos
