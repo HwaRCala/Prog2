@@ -1,9 +1,9 @@
 <?php  
 require 'db_conn.php';
 
-$query = "select * from empleado";
+$query = "select * from pmr_activos";
 
-$result  = mysqli_query($con, $query);
+$result  = mysqli_query($conexion, $query);
 
 ?>
 
@@ -28,34 +28,34 @@ $result  = mysqli_query($con, $query);
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Listado de  <b>empleados</b></h2></div>
+                    <div class="col-sm-8"><h2>Listado de  <b>PMR</b></h2></div>
                     <div class="col-sm-4">
-                        </br><a href="alta.php" class="btn btn-info add-new"><i class="fa fa-plus"></i> Agregar empleado</a>
+                        </br><a href="alta.php" class="btn btn-info add-new"><i class="fa fa-plus"></i> Agregar PMR</a>
                     </div>
                 </div>
             </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                         <td>ID Empleado</td>
-						<td>Nombre</td>
-						<td>Apellido</td>
-						<td>Email</td>
+                         <td>PMR/td>
+						<td>Dirección</td>
+						<td>Empresa</td>
+						<td>Dispositivo</td>
                         <th colspan=2>Acciones</th>
                     </tr>
                 </thead>
 
 				<?php 
-					if (mysqli_affected_rows($con) != 0) {
+					if (mysqli_affected_rows($conexion) != 0) {
 						while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 					?>
 						<tr>
-							<td><?php echo $row["id_empleado"]?></td>
-							<td><?php echo $row["nombre"]?></td>
-							<td><?php echo $row["apellido"]?></td>
-							<td><?php echo $row["email"]?></td>
-							<td align=center><a href='baja.php?id_empleado=<?php echo $row["id_empleado"]?>'>BAJA</td>
-							<td align=center><a href='modif.php?id_empleado=<?php echo $row["id_empleado"]?>'>MODIFICACION</td>
+							<td><?php echo $row["pmr"]?></td>
+							<td><?php echo $row["direccion"]?></td>
+							<td><?php echo $row["operadora"]?></td>
+							<td><?php echo $row["numero_serie"]?></td>
+							<td align=center><a href='baja.php?pmr=<?php echo $row["pmr"]?>'>BAJA</td>
+							<td align=center><a href='modif.php?pmr=<?php echo $row["pmr"]?>'>MODIFICACION</td>
 						</tr>
 						<?php   
 						}

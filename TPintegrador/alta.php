@@ -22,7 +22,7 @@ require 'db_conn.php';
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Nuevo <b>empleado</b></h2></div>
+                    <div class="col-sm-8"><h2>Nuevo <b>PMR</b></h2></div>
                     <div class="col-sm-4">
                         </br><a href="index.php" class="btn btn-info add-new"><i class="fa fa-arrow-left"></i> volver</a>
                     </div>
@@ -32,43 +32,43 @@ require 'db_conn.php';
 		<div class="row">
 			<form method="POST" action="alta.php">
 				<div class="col-md-6">
-					<label>Nombre:</label>
-					<input type="text" name="nombre" id="nombre" class='form-control' maxlength="100" required>
+					<label>PMR</label>
+					<input type="text" name="pmr" id="pmr" class='form-control' maxlength="100" required>
 				</div>
 				<div class="col-md-6">
-					<label>Apellido:</label>
-					<input type="text" name="apellido" id="apellido" class='form-control' maxlength="100">
+					<label>Dirección:</label>
+					<input type="text" name="direccion" id="direccion" class='form-control' maxlength="100">
 				</div>
 				<div class="col-md-6">
-					<label>Departamento</label>
-					<select name="depto" id="depto" class='form-control'>
+					<label>Empresa</label>
+					<select name="operadora" id="operadora" class='form-control'>
 							<option value="">-- seleccione --</option>
 							<?php 
 							
-								$query= "select * from departamento";
+								$query= "select * from operadora";
 
 								$result = mysqli_query($con, $query);
 
 								if (mysqli_affected_rows($con) != 0 ) {
 									while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-										echo "<option value=". $row['id'] .">" . $row['nombre'] . "</option>";
+										echo "<option value=". $row['id_operadora'] .">" . $row['id_operadora'] . "</option>";
 									}								
 								}
 							
 							?>
 					</select>
-
-				</div>
+					</div>
 				<div class="col-md-6">
-					<label>Email:</label>
-					<input type="email" name="email" id="email" class='form-control' maxlength="64">
+					<label>Dispositivo:</label>
+					<input type="dispositivo" name="dispositivo" id="dispositivo" class='form-control' maxlength="64">
 				
 				</div>
 				
 				<div class="col-md-12 pull-right">
 				<hr>
 					<button type="submit" class="btn btn-success">Guardar datos</button>
-				</div>
+				</div>				
+				
 				</form>
 			</div>
         </div>
@@ -78,31 +78,16 @@ require 'db_conn.php';
 
 <?php
 
-if(isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['depto']) && isset($_POST['email'])){
+if(isset($_POST['pmr']) && isset($_POST['direccion']) && isset($_POST['operadora']) && isset($_POST['numero_serie'])){
 	
-	//require 'db_conn.php';
+	$pmr = $_POST['pmr'];
+	$direccion = $_POST['direccion'];
+	$operadora = $_POST['operadora'];
+	$numero_serie = $_POST['numero_serie'];
 
-	$fecha	= date("Y-m-d");
 
-	$nombre = $_POST['nombre'];
-	$apellido = $_POST['apellido'];
-	$depto = $_POST['depto'];
-	$email = $_POST['email'];
-
-	/*echo 'nombre: '. $nombre;
-	echo 'apellido: '. $apellido;
-	echo 'depto: '. $depto;
-	echo 'email: '. $email;
-	echo 'fecha: '. $fecha;
-	exit();*/
-	
-	
-	//echo "query:" . "INSERT into empleado (nombre, apellido, id_departamento, email, fecha) VALUES
-	//						 ('$nombre','$apellido',$depto,'$email', '$fecha' )";
-	//exit();
-
-	if (mysqli_query($con, "INSERT into empleado (nombre, apellido, id_departamento, email, fecha) VALUES
-							 ('$nombre','$apellido',$depto,'$email', '$fecha' )")) {
+	if (mysqli_query($con, "INSERT into pmr_activo (pmr, direccion, operadora, numero_serie) VALUES
+							 ('$pmr','$direccion',$operadora,'$numero_serie')")) {
 
 		echo "<html><head><script>alert('datos del empleado guardados');</script></head></html>";
 		echo "<meta http-equiv='refresh' content='0; url=index.php'>";
