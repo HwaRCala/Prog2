@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Administración de PMR - CCS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1,h2 {
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgb(248, 244, 239);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #366baf;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            }
+    </style>
+</head>
+<body>
+<div class="container" style="display: grid;">
+    <img src="https://www.aysa.com.ar/media-library/imagenes_inicio/logo.png">
+    <h1 >Administracion de PMR - CCS</h1>
+    <div style="display: grid; justify-content: center;">
+    <h2>Funciones PMR</h2>
+    <button class="btn" onclick="location.href='alta_pmr.html'">Alta de PMR</button>
+    <button class="btn" onclick="location.href='bm.php'">Baja y modificación de PMR</button>
+    <button class="btn" onclick="location.href='modificacion_pmr.html'">Modificación de PMR</button>
+    </div>
+    <div style="display: grid; justify-content: center;">
+    <h2>Vistas PMR</h2>
+    <button class="btn" onclick="location.href='vista_activos.php'">Vista de PMR Activos</button>
+    <button class="btn" onclick="location.href='inactivos.php'">Vista de PMR Inactivos</button>
+    </div>
+    <div style="display: grid; justify-content: center;">
+    <h2>Funciones Dispositivo</h2>
+    <button class="btn" onclick="location.href='alta_dispositivo.html'">Alta de Dispositivo</button>
+    <button class="btn" onclick="location.href='baja_dispositivo.html'">Baja de Dispositivo</button>
+    <button class="btn" onclick="location.href='modificacion_dispositivo.html'">Modificación de Dispositivo</button>
+    </div>
+    <div style="display: grid; justify-content: center;">
+    <h2>Funciones SIM</h2>
+    <button class="btn" onclick="location.href='alta_sim.html'">Alta de SIM</button>
+    <button class="btn" onclick="location.href='baja_sim.html'">Baja de SIM</button>
+    <button class="btn" onclick="location.href='modificacion_sim.html'">Modificación de SIM</button>
+    </div>
+</div>
+</body>
+</html>
