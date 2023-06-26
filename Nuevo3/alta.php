@@ -24,7 +24,7 @@ require 'db_conn.php';
                 <div class="row">
                     <div class="col-sm-8"><h2>Alta <b>PMR</b></h2></div>
                     <div class="col-sm-4">
-                        </br><a href="index.php" class="btn btn-info add-new"><i class="fa fa-arrow-left"></i> volver</a>
+                        </br><a href="index.html" class="btn btn-info add-new"><i class="fa fa-arrow-left"></i> volver</a>
                     </div>
                 </div>
             </div>
@@ -40,30 +40,43 @@ require 'db_conn.php';
 					<input type="text" name="direccion" id="direccion" class='form-control' maxlength="100">
 				</div>
 				<div class="col-md-6">
-					<label>Empresa</label>
-					<select name="operadora" id="operadora" class='form-control'>
+					<label>Dispositivo:</label>
+					<select name="ident_dispositivo" id="ident_dispositivo" class='form-control'>
 							<option value="">-- seleccione --</option>
 							<?php 
 							
-								$query= "select * from operadora";
+								$query= "SELECT * from dispositivo";
 
-								$result = mysqli_query($con, $query);
+								$result = mysqli_query($conexion, $query);
 
-								if (mysqli_affected_rows($con) != 0 ) {
+								if (mysqli_affected_rows($conexion) != 0 ) {
 									while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-										echo "<option value=". $row['id_operadora'] .">" . $row['id_operadora'] . "</option>";
+										echo "<option value='" . $row['id_dispositivo'] . "'>" . $row['id_dispositivo'] . " - " . $row['numero_serie'] . "</option>";
 									}								
 								}
 							
 							?>
 					</select>
-					</div>
-				<div class="col-md-6">
-					<label>Dispositivo:</label>
-					<input type="dispositivo" name="dispositivo" id="dispositivo" class='form-control' maxlength="64">
-				
 				</div>
-				
+				<div class="col-md-6">
+					<label>Empresa</label>
+					<select name="ident_sim" id="ident_sim" class='form-control'>
+							<option value="">-- seleccione --</option>
+							<?php 
+							
+								$query= "SELECT * from operadora";
+
+								$result = mysqli_query($conexion, $query);
+
+								if (mysqli_affected_rows($conexion) != 0 ) {
+									while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+										echo "<option value='" . $row['id_operadora'] . "'>" . $row['id_operadora'] . " - " . $row['operadora'] . "</option>";
+									}								
+								}
+							
+							?>
+					</select>
+				</div>
 				<div class="col-md-12 pull-right">
 				<hr>
 					<button type="submit" class="btn btn-success">Guardar datos</button>
@@ -78,22 +91,22 @@ require 'db_conn.php';
 
 <?php
 
-if(isset($_POST['pmr']) && isset($_POST['direccion']) && isset($_POST['operadora']) && isset($_POST['numero_serie'])){
+if(isset($_POST['pmr']) && isset($_POST['direccion']) && isset($_POST['ident_dispositivo']) && isset($_POST['ident_sim'])){
 	
 	$pmr = $_POST['pmr'];
 	$direccion = $_POST['direccion'];
-	$operadora = $_POST['operadora'];
-	$numero_serie = $_POST['numero_serie'];
+	$id_dispositivo = $_POST['ident_dispositivo'];
+	$id_operadora = $_POST['ident_sim'];
 
 
-	if (mysqli_query($con, "INSERT into pmr_activo (pmr, direccion, operadora, numero_serie) VALUES
-							 ('$pmr','$direccion',$operadora,'$numero_serie')")) {
+	if (mysqli_query($conexion, "INSERT into pmr (pmr, direccion, ident_sim, ident_dispositivo) VALUES
+							 ('$pmr','$direccion',$id_operadora,'$id_dispositivo')")) {
 
-		echo "<html><head><script>alert('datos del empleado guardados');</script></head></html>";
-		echo "<meta http-equiv='refresh' content='0; url=index.php'>";
+		echo "<html><head><script>alert('Datos del PMR Guardados');</script></head></html>";
+		echo "<meta http-equiv='refresh' content='0; url=index.html'>";
 	} else {
 		echo "<html><head><script>alert('ERROR! El guardado no se completo');</script></head></html>";
-		echo "<meta http-equiv='refresh' content='0; url=index.php'>";
+		echo "<meta http-equiv='refresh' content='0; url=index.html'>";
 	}
 	
 }
