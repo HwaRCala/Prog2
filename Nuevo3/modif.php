@@ -1,6 +1,31 @@
 <?php
 require 'db_conn.php';
+
+
+if(isset($_GET['pmr'])) {
+
+	$pmr=$_GET['pmr'];
+		
+	$query  = "SELECT * from pmr WHERE pmr = '$pmr'";
+
+	$result = mysqli_query($conexion, $query);
+	
+	if (mysqli_affected_rows($conexion) == 1) {
+		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+			$id_pmr = $row['id_pmr'];
+			$pmr = $row['pmr'];
+			$direccion = $row['direccion'];
+			$dispositivo = $row['ident_dispositivo'];
+			$operadora = $row['ident_operadora'];
+			$sim = $row['ident_sim'];
+
+		}
+	}
+	
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,44 +47,48 @@ require 'db_conn.php';
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Alta <b>PMR</b></h2></div>
+                    <div class="col-sm-8"><h2>Editar <b>PMR</b></h2></div>
                     <div class="col-sm-4">
-                        </br><a href="index.html" class="btn btn-info add-new"><i class="fa fa-arrow-left"></i> volver</a>
+                        
                     </div>
                 </div>
             </div>
 
-		<div class="row">
-			<form method="POST" action="alta.php">
+			<div class="row">
+				<form method="POST" action="modif2.php">
+				<input type=hidden name="accion" value="UPD">
+				<input type=hidden name="id_pmr" value="<?php echo $id_pmr;?>">
 				<div class="col-md-6">
-					<label>PMR</label>
-					<input type="text" name="pmr" id="pmr" class='form-control' maxlength="100" required>
+					<label>PMR:</label>
+					<input type="text" name="pmr" id="pmr" class='form-control' maxlength="100" value="<?php echo $pmr;?>">
 				</div>
 				<div class="col-md-6">
 					<label>Dirección:</label>
-					<input type="text" name="direccion" id="direccion" class='form-control' maxlength="100">
+					<input type="text" name="direccion" id="direccion" class='form-control' maxlength="100" value="<?php echo $direccion;?>">
 				</div>
 				<div class="col-md-6">
-					<label>Dispositivo:</label>
+					<label>Dispositivo:</label>					
 					<select name="ident_dispositivo" id="ident_dispositivo" class='form-control'>
 							<option value="">-- seleccione --</option>
 							<?php 
 							
 								$query= "SELECT * from dispositivo";
-
+								
 								$result = mysqli_query($conexion, $query);
 
 								if (mysqli_affected_rows($conexion) != 0 ) {
 									while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-										echo "<option value='" . $row['id_dispositivo'] . "'>" . $row['id_dispositivo'] . " - " . $row['numero_serie'] . "</option>";
-									}								
+										$selected = ($dispositivo == $row['id_dispositivo']) ? "selected" : "";
+										echo "<option value='" . $row['id_dispositivo'] . "' " . $selected . ">" . $row['id_dispositivo'] . " - " . $row['numero_serie'] . "</option>";
+									}
 								}
 							
 							?>
 					</select>
+
 				</div>
 				<div class="col-md-6">
-					<label>Empresa</label>
+					<label>Operadora:</label>					
 					<select name="ident_operadora" id="ident_operadora" class='form-control'>
 							<option value="">-- seleccione --</option>
 							<?php 
@@ -70,15 +99,17 @@ require 'db_conn.php';
 
 								if (mysqli_affected_rows($conexion) != 0 ) {
 									while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-										echo "<option value='" . $row['id_operadora'] . "'>" . $row['id_operadora'] . " - " . $row['operadora'] . "</option>";
-									}								
+										$selected = ($operadora == $row['id_operadora']) ? "selected" : "";
+										echo "<option value='" . $row['id_operadora'] . "' " . $selected . ">" . $row['id_operadora'] . " - " . $row['operadora'] . "</option>";
+									}
 								}
 							
 							?>
 					</select>
+
 				</div>
 				<div class="col-md-6">
-					<label>SIM:</label>
+					<label>SIM:</label>					
 					<select name="ident_sim" id="ident_sim" class='form-control'>
 							<option value="">-- seleccione --</option>
 							<?php 
@@ -89,49 +120,24 @@ require 'db_conn.php';
 
 								if (mysqli_affected_rows($conexion) != 0 ) {
 									while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-										echo "<option value='" . $row['id_sim'] . "'>" . $row['id_sim'] . " - " . $row['sim'] . "</option>";
-									}								
+										$selected = ($sim == $row['id_sim']) ? "selected" : "";
+										echo "<option value='" . $row['id_sim'] . "' " . $selected . ">" . $row['id_sim'] . " - " . $row['sim'] . "</option>";
+									}
 								}
 							
 							?>
 					</select>
+
 				</div>
+				
 				<div class="col-md-12 pull-right">
 				<hr>
-					<button type="submit" class="btn btn-success">Guardar datos</button>
-				</div>				
-				
+					<a href="bm.php" class="btn btn-info add-new"><i class="fa fa-arrow-left"></i> volver</a>
+					<button type="submit" class="btn btn-success">Modificar datos</button>
+				</div>
 				</form>
 			</div>
         </div>
     </div>     
 </body>
 </html>
-
-<?php
-
-if(isset($_POST['pmr']) && isset($_POST['direccion']) && isset($_POST['ident_sim']) && isset($_POST['ident_dispositivo'])&& isset($_POST['ident_operadora'])){
-	
-	$pmr = $_POST['pmr'];
-	$direccion = $_POST['direccion'];
-	$ident_sim = $_POST['ident_sim'];
-	$ident_dispositivo = $_POST['ident_dispositivo'];
-	$ident_operadora = $_POST['ident_operadora'];
-
-	try{
-
-	if (mysqli_query($conexion, "INSERT into pmr (pmr, direccion, ident_sim, ident_dispositivo,ident_operadora) VALUES
-							 ('$pmr','$direccion',$ident_sim,$ident_operadora,'$ident_dispositivo')")) {
-
-		echo "<html><head><script>alert('Datos del PMR Guardados');</script></head></html>";
-		echo "<meta http-equiv='refresh' content='0; url=index.html'>";
-	} else {
-		echo "<html><head><script>alert('ERROR! El guardado no se completo');</script></head></html>";
-		echo "<meta http-equiv='refresh' content='0; url=index.html'>";
-	}
-	} catch(Exception $excepcionpmr){
-		echo "ERROR!!:".$excepcionpmr->getMessage();
-	}
-}
-
-?>

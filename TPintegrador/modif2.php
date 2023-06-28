@@ -27,7 +27,7 @@ if(isset($_POST['accion']) == 'UPD'){
 									id_departamento = $depto, 
 									email = '$email', 
 									fecha = '$fecha'
-								where id_empleado = '$id' 
+								where id_empleado = '$id';
 								")) {
 
 			echo "<html><head><script>alert('empleado modificado');</script></head></html>";

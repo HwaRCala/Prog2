@@ -1,7 +1,7 @@
 <?php  
 require 'db_conn.php';
 
-$query = "select * from pmr_activos";
+$query = "SELECT * FROM `pmr_activos` ORDER BY `pmr_activos`.`pmr` ASC";
 
 $result  = mysqli_query($conexion, $query);
 
@@ -41,6 +41,7 @@ $result  = mysqli_query($conexion, $query);
 						<td>Dirección</td>
 						<td>Empresa</td>
 						<td>Dispositivo</td>
+						<td>SIM</td>
                         <th colspan=2>Acciones</th>
                     </tr>
                 </thead>
@@ -54,6 +55,7 @@ $result  = mysqli_query($conexion, $query);
 							<td><?php echo $row["direccion"]?></td>
 							<td><?php echo $row["operadora"]?></td>
 							<td><?php echo $row["numero_serie"]?></td>
+							<td><?php echo $row["sim"]?></td>
 							<td align=center><a href='baja_pmr.php?pmr=<?php echo $row["pmr"]?>'>BAJA</td>
 							<td align=center><a href='modif.php?pmr=<?php echo $row["pmr"]?>'>MODIFICACION</td>
 						</tr>
