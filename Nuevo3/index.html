@@ -1,56 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Administración de PMR - CCS</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Puntos de Monitoreo de Red - CCS</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/custom.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
-
-        h1,h2 {
-            text-align: center;
-        }
-
+        
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: rgb(248, 244, 239);
+            background-color:#fff;
         }
-
+        
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
         .btn {
             display: inline-block;
-            padding: 8px 12px;
+            padding: 10px 16px;
             background-color: #366baf;
             color: #fff;
             text-decoration: none;
             border-radius: 4px;
-            }
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .function-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
-<div class="container" style="display: grid;">
-    <img src="https://www.aysa.com.ar/media-library/imagenes_inicio/logo.png">
-    <h1 >Administracion de PMR - CCS</h1>
-    <div style="display: grid; justify-content: center;">
-    <h2>Funciones PMR</h2>
-    <button class="btn" onclick="location.href='alta.php'">Alta de PMR</button>
-    <button class="btn" onclick="location.href='bm.php'">Baja y modificación de PMR</button>
-    <button class="btn" onclick="location.href='inactivos.php'">Vista de PMR Inactivos</button>
+    <div class="container">
+        <img src="https://www.aysa.com.ar/media-library/imagenes_inicio/logo.png">
+        <h1>Puntos de Monitoreo de Red - CCS</h1>
+        <div class="function-section">
+            <div>
+                <h2>Funciones PMR</h2>
+                <button class="btn" onclick="location.href='alta.php'">Alta de PMR</button>
+                <button class="btn" onclick="location.href='bm.php'">Administración de PMR</button>
+                <button class="btn" onclick="location.href='inactivos.php'">Vista de PMR Inactivos</button>
+            </div>
+        </div>
+        <div class="function-section">
+            <div>
+                <h2>Funciones Dispositivo</h2>
+                <button class="btn" onclick="location.href='alta_dispositivo.php'">Alta de Dispositivo</button>
+                <button class="btn" onclick="location.href='bm_dispositivo.php'">Administración de Dispositivo</button>
+            </div>
+        </div>
+        <div class="function-section">
+            <div>
+                <h2>Funciones SIM</h2>
+                <button class="btn" onclick="location.href='alta_sim.php'">Alta de SIM</button>
+                <button class="btn" onclick="location.href='bm_sim.php'">Administración de SIM</button>
+            </div>
+        </div>
     </div>
-    <div style="display: grid; justify-content: center;">
-    <h2>Funciones Dispositivo</h2>
-    <button class="btn" onclick="location.href='alta_dispositivo.html'">Alta de Dispositivo</button>
-    <button class="btn" onclick="location.href='baja_dispositivo.html'">Baja de Dispositivo</button>
-    <button class="btn" onclick="location.href='modificacion_dispositivo.html'">Modificación de Dispositivo</button>
-    </div>
-    <div style="display: grid; justify-content: center;">
-    <h2>Funciones SIM</h2>
-    <button class="btn" onclick="location.href='alta_sim.html'">Alta de SIM</button>
-    <button class="btn" onclick="location.href='baja_sim.html'">Baja de SIM</button>
-    <button class="btn" onclick="location.href='modificacion_sim.html'">Modificación de SIM</button>
-    </div>
-</div>
 </body>
 </html>
