@@ -130,7 +130,11 @@ if(isset($_POST['pmr']) && isset($_POST['direccion']) && isset($_POST['ident_sim
 		echo "<meta http-equiv='refresh' content='0; url=index.html'>";
 	}
 	} catch(Exception $excepcionpmr){
-		echo "ERROR!!:".$excepcionpmr->getMessage();
+		$mensaje = $excepcionpmr->getMessage();
+        echo '<script>
+              alert("Error al realizar la operacion: '.$mensaje.'");
+              </script>';
+		/*echo "ERROR!!:".$excepcionpmr->getMessage();*/
 	}
 }
 
